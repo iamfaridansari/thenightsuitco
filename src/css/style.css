@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+:root {
+  --primary: #ffc5c5;
+  --transition: all 0.5s ease-in-out;
+  --gradient-bg: linear-gradient(326deg, #dee2e6, #f8dbeb 74%);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.5rem;
+}
+h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;
+}
+p,
+a,
+ul,
+li,
+input,
+button {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  text-decoration: none;
+  list-style: none;
+}
+a {
+  color: unset;
+}
+a:hover {
+  color: unset;
+}
+img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+svg {
+  font-size: 1.25rem;
+}
+.logo {
+  width: 150px;
+}
+.gradient-bg {
+  background: var(--gradient-bg);
+}
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+nav ul,
+header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+button {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+}
+.button {
+  background: var(--gradient-bg);
+  color: #000;
+  border-radius: 4px;
+}
+input {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+}
+input[type="range"] {
+  border: none;
+}
+.input {
+  background: none;
+  width: 100%;
+}
+.carousel-container {
+  width: 100%;
+  height: calc(100vh - 115.25px);
+  overflow: hidden;
+  position: relative;
+}
+.carousel-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: var(--transition);
+}
+.carousel-container .leftarrow,
+.carousel-container .rightarrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+}
+.carousel-container .leftarrow {
+  left: 10px;
+}
+.carousel-container .rightarrow {
+  right: 10px;
+}
+.about {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.product-container .product {
+  width: 100%;
+  min-height: 375px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+.product-container .product .img {
+  width: 100%;
+  height: 250px;
+}
+.product-container .product img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.table {
+  min-width: 600px;
+}
+.SVGdisable {
+  pointer-events: none;
+  user-select: none;
+}
+.searchfilter {
+  min-width: 280px;
+  width: 25%;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -350px;
+  z-index: 11;
+  overflow-y: auto;
+  transition: var(--transition);
+}
+.searchfilter.active {
+  right: 0;
+}
+.searchfilter label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.arrow {
+  transition: var(--transition);
+}
+.arrow.rotate_arrow {
+  transform: rotate(180deg);
+}
+.no-pointer {
+  pointer-events: none;
+}
+.alertmodal {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  transform: translateX(-25%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  transition: var(--transition);
+  z-index: 20;
+}
+.alertmodal.active {
+  pointer-events: all;
+  user-select: all;
+  opacity: 1;
+  transform: translateX(0);
+}
+.alertmodal p,
+.alertmodal span {
+  pointer-events: none;
+  user-select: none;
+}
+.user-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.gradient-tile {
+  background: var(--gradient-bg);
+  text-align: center;
+  padding: 15px;
+}
+.contactform input,
+.contactform textarea {
+  width: 100%;
+  padding: 5px 0;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid var(--primary);
+  margin-bottom: 10px;
+}
+.contactform textarea {
+  min-height: 100px;
+  max-height: 200px;
+}
+.contactform input::placeholder,
+.contactform textarea::placeholder {
+  color: #000;
+}
+.navlinks2 {
+  transition: var(--transition);
+  height: 0;
+  overflow: hidden;
+}
+.navlinks2.active {
+  height: 136px;
+}
+.product .img img {
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+}
