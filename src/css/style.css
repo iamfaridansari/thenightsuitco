@@ -257,9 +257,19 @@ input[type="range"] {
   overflow: hidden;
 }
 .navlinks2.active {
-  height: 136px;
+  height: 160px;
 }
 .product .img img {
   border-radius: 5px;
   border: 1px solid #d3d3d3;
+}
+.navlinks li .nav-link,
+.navlinks2 li .nav-link {
+  color: #000;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+.navlinks li .nav-link.active,
+.navlinks2 li .nav-link.active {
+  background: var(--gradient-bg);
 }

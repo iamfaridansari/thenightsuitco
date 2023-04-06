@@ -2,9 +2,10 @@ import React, { createContext, useState, useRef, useEffect } from "react";
 const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
+  const backendAPI = "https://server-application.onrender.com";
   const [products, setProducts] = useState([]);
   const fetchProducts = async () => {
-    const res = await fetch("/api/get/nightsuit/products");
+    const res = await fetch(backendAPI + "/api/get/nightsuit/products");
     const data = await res.json();
     console.log(data);
     //
@@ -62,6 +63,7 @@ const ProductContextProvider = ({ children }) => {
         hideAlertModal,
         alertMsg,
         setAlertMsg,
+        backendAPI,
       }}
     >
       {children}

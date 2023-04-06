@@ -75,7 +75,7 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-      <div className="container-fluid p-0 navlinks2" ref={navlinks2}>
+      <div className="container-fluid p-0 navlinks2 mb-2 d-md-none" ref={navlinks2}>
         <ul className="d-md-none d-flex align-items-center justify-content-between flex-column gap-2">
           <li>
             <NavLink className="nav-link" to="/" onClick={closeMenu}>

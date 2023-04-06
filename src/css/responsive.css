@@ -37,7 +37,10 @@
   .product-container .product {
     min-height: 240px;
   }
+  .product-container {
+    grid-template-columns: 1fr;
+  }
   .product-container .product .img {
-    height: 100px;
+    height: 200px;
   }
 }

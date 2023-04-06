@@ -7,7 +7,7 @@ import { WishlistContext } from "../context/WishlistContext";
 const ProductCard = ({ product }) => {
   const { cart, setCart } = useContext(CartContext);
   const { wishlist, setWishlist } = useContext(WishlistContext);
-  const { alertModal, hideAlertModal, setAlertMsg } =
+  const { alertModal, hideAlertModal, setAlertMsg, backendAPI } =
     useContext(ProductContext);
   const addToCart = (product) => {
     let inCart = cart.find((item) => {
@@ -66,7 +66,7 @@ const ProductCard = ({ product }) => {
     <>
       <div className="product">
         <div className="img">
-          <img src={`http://localhost:3001/${product.images[0].path}`} alt="" />
+          <img src={`${backendAPI}/${product.images[0].path}`} alt="" />
         </div>
         <div className="my-2">
           <p className="text-capitalize">{product.name}</p>
