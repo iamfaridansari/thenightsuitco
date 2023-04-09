@@ -6,7 +6,7 @@ const About = () => {
     <>
       <Tile title="About us" />
 
-      <div className="container text-center mt-4">
+      <div className="container text-center py-4">
         <h2 className="text-capitalize mb-2">The Nightsuit Company</h2>
         <p>
           Welcome to The Night Suit Co., your number one source for all things

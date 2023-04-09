@@ -141,7 +141,7 @@ const SearchFilter = () => {
   return (
     <>
       <div className="container-fluid p-2 gradient-bg">
-        <div className="d-flex align-items-center justify-content-between gap-2">
+        <div className="d-flex align-items-sm-center align-items-stretch justify-content-between flex-sm-row flex-column gap-2">
           <p>Search & Filter</p>
           <div className="d-flex align-items-center justify-content-between gap-2">
             <input
@@ -150,6 +150,7 @@ const SearchFilter = () => {
               placeholder="Search..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              style={{ border: "none" }}
             />
             <button className="button" onClick={toggleSearchFilter}>
               <FaFilter className="SVGdisable" />
@@ -157,26 +158,8 @@ const SearchFilter = () => {
           </div>
         </div>
       </div>
-
-      {/* <div className="container-fluid py-2 border-bottom bg-white">
-        <div className="d-flex align-items-center justify-content-between">
-          <p>Search & Filter</p>
-          <div className="d-flex align-items-center justify-content-between gap-2">
-            <input
-              type="text"
-              className="w-100"
-              placeholder="Search..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button className="button" onClick={toggleSearchFilter}>
-              <FaFilter className="SVGdisable" />
-            </button>
-          </div>
-        </div>
-      </div> */}
       <div
-        className="searchfilter bg-white border-start p-2"
+        className="searchfilter gradient-bg border-start p-2"
         ref={searchfilter}
       >
         <div className="d-flex align-items-center justify-content-between">

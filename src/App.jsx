@@ -21,26 +21,40 @@ import { ProductContextProvider } from "./context/ProductContext";
 import Header from "./components/Header";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AddNewAddress from "./components/AddNewAddress";
+import { AddressContextProvider } from "./context/AddressContext";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { UserContextProvider } from "./context/UserContext";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
-    <CartContextProvider>
-      <WishlistContextProvider>
-        <ProductContextProvider>
-          <Header />
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/cart" element={<Cart />} />
-          </Routes>
-          <Footer />
-        </ProductContextProvider>
-      </WishlistContextProvider>
-    </CartContextProvider>
+    <UserContextProvider>
+      <CartContextProvider>
+        <WishlistContextProvider>
+          <ProductContextProvider>
+            <AddressContextProvider>
+              <Header />
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/address" element={<AddNewAddress />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+              <Footer />
+            </AddressContextProvider>
+          </ProductContextProvider>
+        </WishlistContextProvider>
+      </CartContextProvider>
+    </UserContextProvider>
   );
 };
 

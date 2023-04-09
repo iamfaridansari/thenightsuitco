@@ -7,7 +7,7 @@ import { WishlistContext } from "../context/WishlistContext";
 const ProductCard = ({ product }) => {
   const { cart, setCart } = useContext(CartContext);
   const { wishlist, setWishlist } = useContext(WishlistContext);
-  const { alertModal, hideAlertModal, setAlertMsg, backendAPI } =
+  const { setAlertMsg, backendAPI, toggleAlertModal } =
     useContext(ProductContext);
   const addToCart = (product) => {
     let inCart = cart.find((item) => {
@@ -22,8 +22,7 @@ const ProductCard = ({ product }) => {
       };
       setCart([...cart, product]);
       setAlertMsg("Item added to cart");
-      alertModal.current.classList.add("active");
-      hideAlertModal();
+      toggleAlertModal();
     } else if (inCart) {
       const updateQuantity = cart.map((item) => {
         if (item._id === product._id) {
@@ -37,8 +36,7 @@ const ProductCard = ({ product }) => {
       });
       setCart(updateQuantity);
       setAlertMsg("Item already in the cart");
-      alertModal.current.classList.add("active");
-      hideAlertModal();
+      toggleAlertModal();
     }
   };
   //
@@ -49,16 +47,14 @@ const ProductCard = ({ product }) => {
     if (!inWishlist) {
       setWishlist([...wishlist, product]);
       setAlertMsg("Item added to wishlist");
-      alertModal.current.classList.add("active");
-      hideAlertModal();
+      toggleAlertModal();
     } else {
       const filtered = wishlist.filter((item) => {
         return item._id !== product._id;
       });
       setWishlist(filtered);
       setAlertMsg("Item removed from wishlist");
-      alertModal.current.classList.add("active");
-      hideAlertModal();
+      toggleAlertModal();
     }
   };
   //

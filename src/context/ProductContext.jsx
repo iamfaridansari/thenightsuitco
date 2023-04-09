@@ -4,13 +4,20 @@ const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
   const backendAPI = "https://server-application.onrender.com";
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchProducts = async () => {
-    const res = await fetch(backendAPI + "/api/get/nightsuit/products");
-    const data = await res.json();
-    console.log(data);
-    //
-    if (res.status === 200) {
-      setProducts(data);
+    try {
+      setLoading(true);
+      const res = await fetch(backendAPI + "/api/get/nightsuit/products");
+      const data = await res.json();
+      console.log(data);
+      //
+      if (res.status === 200) {
+        setLoading(false);
+        setProducts(data);
+      }
+    } catch (error) {
+      setLoading(false);
     }
   };
   //
@@ -45,7 +52,8 @@ const ProductContextProvider = ({ children }) => {
   //
   const alertModal = useRef(null);
   const [alertMsg, setAlertMsg] = useState("");
-  function hideAlertModal() {
+  function toggleAlertModal() {
+    alertModal.current.classList.add("active");
     setTimeout(() => {
       alertModal.current.classList.remove("active");
     }, 1000);
@@ -60,10 +68,11 @@ const ProductContextProvider = ({ children }) => {
         setNewProducts,
         feature,
         alertModal,
-        hideAlertModal,
+        toggleAlertModal,
         alertMsg,
         setAlertMsg,
         backendAPI,
+        loading,
       }}
     >
       {children}

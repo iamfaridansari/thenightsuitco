@@ -42,7 +42,7 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/profile">
               <FaUser />
             </Link>
           </li>

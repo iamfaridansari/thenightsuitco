@@ -7,15 +7,15 @@ const Contact = () => {
     <>
       <Tile title="Contact us" />
 
-      <div className="container mt-4">
+      <div className="container py-4">
         <div className="row align-items-center justify-content-between gap-md-0 gap-5">
           <div className="col-md-6">
             <form className="contactform">
-              <input type="text" placeholder="Full Name" />
-              <input type="text" placeholder="Email address" />
-              <input type="text" placeholder="Mobile Number" />
-              <textarea placeholder="Message"></textarea>
-              <div className="text-end">
+              <input type="text" className="input mb-4" placeholder="Full Name" />
+              <input type="text" className="input mb-4" placeholder="Email address" />
+              <input type="text" className="input mb-4" placeholder="Mobile Number" />
+              <textarea className="input" placeholder="Message"></textarea>
+              <div className="text-end mt-4">
                 <button className="button">Submit</button>
               </div>
             </form>
