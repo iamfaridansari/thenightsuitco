@@ -396,3 +396,66 @@ textarea {
     opacity: 0.8;
   }
 }
+.displayImg {
+  min-height: 350px;
+  max-height: 450px;
+  overflow: hidden;
+}
+.displayImg img {
+  height: 100%;
+}
+.optionImg img {
+  width: 75px;
+  height: 75px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.75;
+  transition: var(--transition);
+}
+.optionImg img.active {
+  opacity: 1;
+  border: 2px solid #000;
+}
+.customRadio {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+}
+.customRadio input {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  appearance: none;
+  pointer-events: all;
+}
+.customRadio input::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: var(--gradient-bg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+.customRadio input:hover::before {
+  border: 1px solid #000;
+}
+.customRadio span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+.customRadio input[type="radio"]:checked::before {
+  border: 1px solid #000;
+}
+.customRadio input[type="radio"]:checked + span {
+  opacity: 1;
+}

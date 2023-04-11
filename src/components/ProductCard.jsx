@@ -3,6 +3,7 @@ import { FaHeart } from "react-icons/fa";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
 import { WishlistContext } from "../context/WishlistContext";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const { cart, setCart } = useContext(CartContext);
@@ -61,15 +62,17 @@ const ProductCard = ({ product }) => {
   return (
     <>
       <div className="product">
-        <div className="img">
-          <img src={`${backendAPI}/${product.images[0].path}`} alt="" />
-        </div>
-        <div className="my-2">
-          <p className="text-capitalize">{product.name}</p>
-          <p>
-            Rs. <strong>{product.price}</strong>
-          </p>
-        </div>
+        <Link to={`/view/${product._id}`}>
+          <div className="img">
+            <img src={`${backendAPI}/${product.images[0].path}`} alt="" />
+          </div>
+          <div className="my-2">
+            <p className="text-capitalize">{product.name}</p>
+            <p>
+              Rs. <strong>{product.price}</strong>
+            </p>
+          </div>
+        </Link>
         <div className="d-flex align-items-stretch justify-content-between gap-2 custom-flex-column">
           <button
             className="button add-to-cart w-100"

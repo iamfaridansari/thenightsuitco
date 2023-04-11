@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
-import { FaPen, FaTrash } from "react-icons/fa";
+import { FaCheck, FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
@@ -88,8 +88,15 @@ const Address = () => {
                       key={index}
                     >
                       <div className="d-flex align-items-center justify-content-between gap-2 mb-2">
-                        <div className="d-flex align-items-center justify-content-between gap-2">
-                          <input type="radio" name="address" />
+                        <div className="customRadio">
+                          <input
+                            type="radio"
+                            name="address"
+                            onClick={(e) => console.log(e)}
+                          />
+                          <span>
+                            <FaCheck />
+                          </span>
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2">
                           <button className="button">

@@ -27,6 +27,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { UserContextProvider } from "./context/UserContext";
 import Profile from "./pages/Profile";
+import ViewProduct from "./pages/ViewProduct";
 
 const App = () => {
   return (
@@ -41,6 +42,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/view/:id" element={<ViewProduct />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/cart" element={<Cart />} />
