@@ -4,17 +4,29 @@ const ProductContext = createContext();
 const ProductContextProvider = ({ children }) => {
   const backendAPI = "https://server-application.onrender.com";
   const [products, setProducts] = useState([]);
+  const [newProducts, setNewProducts] = useState([]);
+  const [feature, setFeature] = useState([]);
   const [loading, setLoading] = useState(false);
   const fetchProducts = async () => {
     try {
       setLoading(true);
       const res = await fetch(backendAPI + "/api/get/nightsuit/products");
       const data = await res.json();
-      console.log(data);
       //
       if (res.status === 200) {
         setLoading(false);
-        setProducts(data);
+        const updatedData = data.map((item) => {
+          return (item = {
+            ...item,
+            inCart: false,
+            inWishlist: false,
+          });
+        });
+        console.log(updatedData);
+        //
+        setProducts(rearrange(updatedData));
+        setNewProducts(rearrange(updatedData));
+        setFeature(rearrange(updatedData));
       }
     } catch (error) {
       setLoading(false);
@@ -39,16 +51,6 @@ const ProductContextProvider = ({ children }) => {
   useEffect(() => {
     fetchProducts();
   }, []);
-  //
-  const [newProducts, setNewProducts] = useState([]);
-  const [feature, setFeature] = useState([]);
-  useEffect(() => {
-    if (products.length !== 0) {
-      setNewProducts(rearrange(products));
-      setFeature(rearrange(products));
-    }
-  }, [products]);
-
   //
   const alertModal = useRef(null);
   const [alertMsg, setAlertMsg] = useState("");
