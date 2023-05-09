@@ -1,8 +1,15 @@
-import React, { createContext, useState, useRef, useEffect } from "react";
+import React, {
+  createContext,
+  useState,
+  useRef,
+  useEffect,
+  useContext,
+} from "react";
+import { UserContext } from "./UserContext";
 const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
-  const backendAPI = "https://server-application.onrender.com";
+  const { backendAPI } = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   const [feature, setFeature] = useState([]);

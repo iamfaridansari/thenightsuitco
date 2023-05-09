@@ -459,3 +459,27 @@ textarea {
 .customRadio input[type="radio"]:checked + span {
   opacity: 1;
 }
+.alertCheckout {
+  animation: alert 2s linear backwards;
+  transform-origin: center;
+}
+@keyframes alert {
+  0% {
+    color: #000;
+  }
+  20% {
+    color: red;
+  }
+  40% {
+    color: #000;
+  }
+  60% {
+    color: red;
+  }
+  80% {
+    color: #000;
+  }
+  100% {
+    color: red;
+  }
+}

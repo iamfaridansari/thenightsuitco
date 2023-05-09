@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ProductContext } from "../context/ProductContext";
+import { UserContext } from "../context/UserContext";
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { backendAPI } = useContext(ProductContext);
+  const { backendAPI } = useContext(UserContext);
   const [input, setInput] = useState({
     name: "",
     email: "",

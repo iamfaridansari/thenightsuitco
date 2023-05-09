@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { ProductContext } from "../context/ProductContext";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-  const { backendAPI } = useContext(ProductContext);
+  const { backendAPI } = useContext(UserContext);
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
@@ -52,13 +52,7 @@ const Login = () => {
         //
         if (res.status === 200) {
           setSuccess(data.message);
-          localStorage.setItem(
-            "nightsuituser",
-            JSON.stringify({
-              email: data.email,
-              token: data.token,
-            })
-          );
+          localStorage.setItem("nightsuituser", JSON.stringify(data.token));
           setError({
             email: "",
             password: "",
@@ -69,7 +63,7 @@ const Login = () => {
             setSuccess("");
           }, 2000);
         }
-        if (res.status === 422) {
+        if (res.status !== 422) {
           setError({
             response: data.message,
           });

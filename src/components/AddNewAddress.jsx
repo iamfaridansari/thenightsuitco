@@ -1,44 +1,13 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import { AddressContext } from "../context/AddressContext";
 import { UserContext } from "../context/UserContext";
-import { ProductContext } from "../context/ProductContext";
 import states from "../data/states";
 import { useNavigate } from "react-router-dom";
 
 const AddNewAddress = () => {
   const navigate = useNavigate();
   //
-  const { setUser } = useContext(UserContext);
-  const { backendAPI } = useContext(ProductContext);
-  const authentication = async () => {
-    const nightsuituser = JSON.parse(localStorage.getItem("nightsuituser"));
-    if (!nightsuituser) {
-      navigate("/login", { replace: true });
-    } else {
-      try {
-        const res = await fetch(backendAPI + "/api/auth/nightsuit/user", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: nightsuituser.email,
-            token: nightsuituser.token,
-          }),
-        });
-        const data = await res.json();
-        console.log(data, res.status);
-        if (res.status === 200) {
-          setUser(data);
-        }
-        if (res.status === 401) {
-          navigate("/login", { replace: true });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  const { backendAPI, authentication, user } = useContext(UserContext);
   useEffect(() => {
     authentication();
   }, []);
@@ -67,8 +36,8 @@ const AddNewAddress = () => {
   const [success, setSuccess] = useState("");
   //
   const addAddress = async (e) => {
-    const nightsuituser = JSON.parse(localStorage.getItem("nightsuituser"));
     const { house, state, city, landmark, pincode } = address;
+    const email = user.email;
     e.preventDefault();
     //
     if (!address.house) {
@@ -89,14 +58,13 @@ const AddNewAddress = () => {
       });
     } else {
       try {
-        const res = await fetch(backendAPI + "/api/post/nightsuit/address", {
+        const res = await fetch("/api/post/nightsuit/address", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: nightsuituser.email,
-            token: nightsuituser.token,
+            email,
             house,
             state,
             city,

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CartContext } from "../context/CartContext";
-import { ProductContext } from "../context/ProductContext";
 import { FaTimes } from "react-icons/fa";
+import { UserContext } from "../context/UserContext";
 
-const Summary = () => {
-  const { backendAPI } = useContext(ProductContext);
+const Summary = ({ checkout, setCheckout }) => {
+  const { backendAPI } = useContext(UserContext);
   const { cart } = useContext(CartContext);
   const [summary, setSummary] = useState({
     total_items: 0,
@@ -27,12 +27,21 @@ const Summary = () => {
       total_items: totalitems,
       subtotal: totalprice - discount,
     });
+    setCheckout({
+      ...checkout,
+      summary: {
+        total_items: totalitems,
+        subtotal: totalprice - discount,
+      },
+      cart: cart,
+    });
     if (cart.length === 0) {
       setSummary({
         total_items: 0,
         subtotal: 0,
       });
     }
+    //
   }, [cart]);
   //
   const applyCoupon = async () => {
@@ -89,6 +98,14 @@ const Summary = () => {
     applyBtn.current.removeAttribute("disabled");
     applyBtn.current.classList.remove("deactive");
   };
+  //
+  useEffect(() => {
+    setCheckout({
+      ...checkout,
+      summary: summary,
+      cart: cart,
+    });
+  }, [summary]);
   //
   return (
     <>

@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import Summary from "../components/Summary";
 import { CartContext } from "../context/CartContext";
 import Tile from "../components/Tile";
 import Address from "../components/Address";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const { cart, setCart } = useContext(CartContext);
   //
   const removeItem = (product) => {
@@ -45,6 +47,73 @@ const Cart = () => {
     });
     setCart(filtered);
   };
+  //
+  const [checkout, setCheckout] = useState({
+    user: {},
+    address: {},
+    cart: [],
+    summary: {},
+  });
+  //
+  const addressRef = useRef(null);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
+  const checkoutUser = async () => {
+    //
+    const { user, address, cart, summary } = checkout;
+    //
+    if (Object.keys(checkout.address).length === 0) {
+      addressRef.current.scrollIntoView();
+      addressRef.current.classList.add("alertCheckout");
+      setError(true);
+      setMessage("Please select an address");
+      setTimeout(() => {
+        addressRef.current.classList.remove("alertCheckout");
+      }, 2000);
+    } else if (Object.keys(checkout.user).length === 0) {
+      setError(true);
+      setMessage("Please login to continue");
+    } else if (checkout.cart.length === 0) {
+      setError(true);
+      setMessage("No item in cart");
+    } else if (Object.keys(checkout.summary).length === 0) {
+      setError(true);
+      setMessage("No item in cart");
+    } else {
+      try {
+        const res = await fetch("/api/post/nightsuit/orders", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ user, address, cart, summary }),
+        });
+        const data = await res.json();
+        console.log(data);
+        //
+        setMessage(data.message);
+        if (res.status === 200) {
+          setError(false);
+          setTimeout(() => {
+            setCart([]);
+            navigate("/products", { replace: true });
+          }, 2000);
+        } else {
+          setError(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+  //
+  useEffect(() => {
+    if (message !== "") {
+      setTimeout(() => {
+        setMessage("");
+      }, 2000);
+    }
+  }, [message]);
   return (
     <>
       <Tile title="Cart" />
@@ -110,11 +179,24 @@ const Cart = () => {
             </div>
             <div className="row align-items-start justify-content-between gap-md-0 gap-5 mt-4">
               <div className="col-md-6">
-                <Address />
+                <Address
+                  checkout={checkout}
+                  setCheckout={setCheckout}
+                  addressRef={addressRef}
+                />
               </div>
               <div className="col-md-4 col-sm-6">
-                <Summary />
+                <Summary checkout={checkout} setCheckout={setCheckout} />
               </div>
+            </div>
+            <hr />
+            <div className="text-end">
+              <p className={`mb-2 ${error ? "text-danger" : "text-success"}`}>
+                {message}
+              </p>
+              <button className="button" onClick={checkoutUser}>
+                Checkout
+              </button>
             </div>
           </>
         )}
