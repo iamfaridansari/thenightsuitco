@@ -188,13 +188,14 @@ textarea {
   height: 100%;
   position: fixed;
   top: 0;
-  right: -350px;
+  right: 0;
+  transform: translateX(150%);
   z-index: 11;
   overflow-y: auto;
   transition: var(--transition);
 }
 .searchfilter.active {
-  right: 0;
+  transform: translateX(0);
   box-shadow: 0 0 20px 5px #333;
 }
 .searchfilter label {
