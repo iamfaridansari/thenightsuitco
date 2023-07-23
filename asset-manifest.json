@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/thenightsuitco/static/css/main.55337b2e.css",
+    "main.css": "/thenightsuitco/static/css/main.e2ef6f89.css",
     "main.js": "/thenightsuitco/static/js/main.dbbf3649.js",
     "static/media/banner2.webp": "/thenightsuitco/static/media/banner2.896801fdd4158bfdd7ed.webp",
     "static/media/banner3.webp": "/thenightsuitco/static/media/banner3.a2b9d86c08190580590a.webp",
@@ -9,11 +9,11 @@
     "static/media/banner1.webp": "/thenightsuitco/static/media/banner1.4bce9648ecde38a93bd5.webp",
     "static/media/banner4.webp": "/thenightsuitco/static/media/banner4.cf23d62f1fe1a1ab7929.webp",
     "index.html": "/thenightsuitco/index.html",
-    "main.55337b2e.css.map": "/thenightsuitco/static/css/main.55337b2e.css.map",
+    "main.e2ef6f89.css.map": "/thenightsuitco/static/css/main.e2ef6f89.css.map",
     "main.dbbf3649.js.map": "/thenightsuitco/static/js/main.dbbf3649.js.map"
   },
   "entrypoints": [
-    "static/css/main.55337b2e.css",
+    "static/css/main.e2ef6f89.css",
     "static/js/main.dbbf3649.js"
   ]
 }
