@@ -2,7 +2,6 @@ import React from "react";
 import Carousel from "../components/Carousel";
 import Feature from "../components/Feature";
 import AlertModal from "../components/AlertModal";
-import Reviews from "../components/Reviews";
 import about1 from "../images/about1.jpg";
 import about2 from "../images/about2.jpg";
 
